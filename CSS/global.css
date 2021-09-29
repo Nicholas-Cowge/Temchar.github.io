@@ -1,9 +1,57 @@
 @charset "UTF-8";
 
-:root { /*define global variables*/
-
+/* --- basic shit --- */
+/*define global variables*/
+:root {
+  /*define global colors*/
+  --background: #222;
+  --content-background: #ddd;
+  --accent: orange;
 }
 
-* { /*define global attributes*/
-  
+/*define global attributes*/
+* {
+  /*define global font*/
+  font-family: 'Oxygen', sans-serif;
+}
+
+body {
+  background-color: var(--background);
+}
+
+/* --- content styling --- */
+/*style the area around everything thats not the navbar*/
+.content {
+  /* forefit 20% of our screen realestate to the style gods */
+  width: 80%;
+  /* get in the middle you rat bastard */
+  margin: auto;
+  /* allow for .content and .section to get up close and personal */
+  padding: 0;
+  /* accent colored border around all content */
+  border: solid var(--accent) 1px;
+  border-radius: 5px;
+  /* set content background */
+  background-color: var(--content-background);
+}
+
+.section {
+/* keep childrien from beig right up on the border */
+padding: 0 5%;
+
+  /* give little visual indicators about what content is related and what is not using borders */
+  border: solid var(--accent) 1px;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-bottom-width: 0;
+}
+
+/* eliminate double borders at the top if there is no page title */
+.section:first-child {
+  border-top-width: 0;
+}
+
+/* style page title */
+h1 {
+  padding: 0 5%;
 }
