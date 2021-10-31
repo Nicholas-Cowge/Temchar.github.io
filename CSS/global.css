@@ -10,6 +10,8 @@
   --border-width: 3px;
   --border-raidius: 5px;
   --navbar-margin: 2%;
+  /* dropdown menus slide to the left a bit when hovered so that they don't run into the edge of the page. adjust this if it slides off the other end. */
+  --dropdown-hover-slide: -200px;
   /* there's some weird shit going on with the dropdown. it shifts all the buttons down if there is a dropdown present in the navbar. if you get a bug where the buttons are too high / low, fiddle with this. */
   --fucky-button-offset: -13.5px;
 }
@@ -44,20 +46,19 @@ body {
  background-color: var(--content-background);
  box-shadow: 5px 5px 20px black ;
  }
- 
 
  .navbar {
    /* position element */
    margin: 0;
    padding: 0;
  }
- 
+
  /* tell the blue underlines on links to fuck off */
  .navbar a {
    color: black;
    text-decoration: none;
  }
- 
+
  /* style the buttons n shit */
  .navbar .button{
    top: 0;
@@ -67,11 +68,11 @@ body {
    background-color: #ddd;
    border-right: solid var(--accent) calc(var(--border-width) / 2);
    border-left: solid var(--accent) calc(var(--border-width) / 2);
-   transition: ease;
-   transition-duration: 0.3s;
+   transition: background-color 0.3s ease;
+   transition-delay: 0.2s;
    transform: translateY(var(--fucky-button-offset));
  }
- 
+
  /* round the edges of the first item in the navbar so its edges don't go over the border */
  .navbar .button:first-of-type {
    --inside-border-raidius: calc(var(--border-raidius) - var(--border-width));
@@ -79,29 +80,31 @@ body {
    /* get rid of the left border as well */
    border-left: none;
  }
- 
+
  /* regular link hover effects */
  .navbar .button:hover{
    background-color: #aaa;
+   transition-delay: 0s !important;
  }
- 
+
  /* -- dropdown styling -- */
- 
+
  .dropdown {
    margin: 0 !important;
    padding: 0 !important;
    margin-right: 5px !important;
    display: inline-block;
    height: 37px;
+   transition: transform 0.3s ease;
  }
- 
+
  .dropdown .button {
    border-radius: 0 !important;
    border-left: solid var(--accent) calc(var(--border-width) / 2) !important;
    margin-bottom: 50px;
    white-space: nowrap;
  }
- 
+
  .dropdown-content {
    display: inline-block !important;
    padding: 0 !important;
@@ -114,7 +117,7 @@ body {
    --fucky-button-offset: 0;
    background-color: var(--content-background);
  }
- 
+
  /* show dropdown contnet when you haver over it */
  .dropdown:hover .dropdown-content {
   display: inline-block !important;
@@ -123,19 +126,25 @@ body {
   transition: ease;
   transition-duration: 0.3s;
  }
- 
+
+ .dropdown:hover {
+   transition: transform 0.2s ease;
+   transform: translateX(var(--dropdown-hover-slide));
+   background-color: var(--content-background);
+ }
+
  .dropdown:hover .button {
    background-color: #aaa;
  }
- 
+
  .dropdown:hover .dropdown-content .button {
    background-color: var(--content-background);
  }
- 
+
  .dropdown-content:hover .button:hover {
    background-color: #aaa;
  }
- 
+
  .dropdown-content a {
    display: inline;
  }
@@ -199,7 +208,3 @@ img {
   margin-right: 10px;
   margin-left: 0;
 }
-
-
-
-
